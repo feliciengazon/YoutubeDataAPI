@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">YoutubeDataAPI</string>
+    <string name="title">TITLE %d</string>
+    <string name="description">DESCRIPTION %d</string>
+</resources>
