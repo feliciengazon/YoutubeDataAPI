@@ -11,13 +11,13 @@
     tools:context="fr.esilv.s8.youtubedataapi.activities.MainActivity">
 
     <EditText
-        android:text="EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText" />
 
     <Button
         android:text="Button"
+        android:onClick="switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,6 +34,7 @@ public class VideoAdapter extends ArrayAdapter<Video.ItemsBean> {
             viewHolder = new ViewHolder();
             viewHolder.titleTextView = (TextView) convertView.findViewById(R.id.titleTextView);
             viewHolder.descriptionTextView = (TextView) convertView.findViewById(R.id.descriptionTextView);
+            viewHolder.imageview = (ImageView) convertView.findViewById(R.id.image);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -40,12 +44,14 @@ public class VideoAdapter extends ArrayAdapter<Video.ItemsBean> {
         Video.ItemsBean item = getItem(position);
         viewHolder.titleTextView.setText(item.getSnippet().getTitle());
         viewHolder.descriptionTextView.setText(item.getSnippet().getDescription());
+        Picasso.with(convertView.getContext()).load(item.getSnippet().getThumbnails().getHigh().getUrl()).into(viewHolder.imageview);
         return convertView;
     }
 
     static class ViewHolder {
         private TextView titleTextView;
         private TextView descriptionTextView;
+        private ImageView imageview;
     }
 }
 

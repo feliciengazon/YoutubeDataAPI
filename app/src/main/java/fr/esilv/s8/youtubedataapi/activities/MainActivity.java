@@ -4,8 +4,11 @@ import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
     private EditText editText;
+    private Button button;
     String text;
     private List<Video.ItemsBean> listVideo;
     private String key = "AIzaSyABziWyGb1ygmHDh6b46QFGREk7XM_Axo8";
@@ -37,16 +41,23 @@ public class MainActivity extends AppCompatActivity {
 
         //Bind the XML ListView to the Java ListView
         editText = (EditText) findViewById(R.id.editText);
-        text = editText.getText().toString();
         listView = (ListView) findViewById(R.id.idListView);
         getVideo(text);
+        button = (Button) findViewById(R.id.button);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                text = editText.getText().toString();
+                getVideo(text);
+            }
+        });
     }
 
 
     private void getVideo(String Request){
 
-            StringRequest videosRequest = new StringRequest("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+text+"&key=AIzaSyABziWyGb1ygmHDh6b46QFGREk7XM_Axo8", new Response.Listener<String>() {
+            StringRequest videosRequest = new StringRequest("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&q="+text+"&key=AIzaSyABziWyGb1ygmHDh6b46QFGREk7XM_Axo8", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     //parse data from webservice to get Contracts as Java object
